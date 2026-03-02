@@ -7,8 +7,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: #0a0a0f;
-  color: #e8e8f0;
+  background: #f5f7fa;
+  color: #1a2332;
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -16,8 +16,8 @@ html, body {
 }
 
 ::selection {
-  background: rgba(0, 212, 255, 0.3);
-  color: #fff;
+  background: rgba(66, 153, 225, 0.3);
+  color: #1a2332;
 }
 
 ::-webkit-scrollbar {
@@ -25,14 +25,14 @@ html, body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0f;
+  background: #f5f7fa;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e1e30;
+  background: #cbd5e0;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2e2e48;
+  background: #a0aec0;
 }

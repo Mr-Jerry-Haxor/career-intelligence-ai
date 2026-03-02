@@ -3,7 +3,7 @@
   <header class="header">
     <div class="header-content">
       <div class="logo">
-        <span class="logo-icon">&#9889;</span>
+        <span class="logo-icon">⚡</span>
         <h1>AI Resume Checker</h1>
       </div>
       <p class="tagline">Career Survival Intelligence Engine &mdash; Find out if AI is coming for your job</p>
@@ -12,7 +12,7 @@
 
   <!-- PRIVACY BANNER -->
   <div class="privacy-banner">
-    <span class="privacy-icon">&#128274;</span>
+    <span class="privacy-icon">🔒</span>
     <span>Your resume is analyzed in memory only. It is never stored, indexed, or shared. The file is automatically deleted immediately after processing. We do not train AI models on your data.</span>
   </div>
 
@@ -27,7 +27,7 @@
       (click)="triggerFileInput()"
     >
       <div class="drop-zone-content">
-        <div class="upload-icon">&#128196;</div>
+        <div class="upload-icon">📄</div>
         <h2>Drop your resume here</h2>
         <p>or click to browse</p>
         <p class="file-types">Supports PDF, DOCX, TXT (max 10MB)</p>
@@ -42,7 +42,7 @@
     </div>
 
     <div class="error-message" *ngIf="state === 'error'">
-      <span class="error-icon">&#9888;</span>
+      <span class="error-icon">⚠️</span>
       <span>{{ errorMessage }}</span>
       <button class="retry-btn" (click)="resetAnalysis()">Try Again</button>
     </div>
@@ -66,7 +66,7 @@
     <div class="results-header">
       <h2>Analysis Complete: {{ fileName }}</h2>
       <button class="new-analysis-btn" (click)="resetAnalysis()">
-        &#8634; New Analysis
+        ↻ New Analysis
       </button>
     </div>
     <div class="results-content" [innerHTML]="formattedResult"></div>
@@ -74,7 +74,7 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>Career Survival Intelligence Engine &mdash; Powered by Llama 3.1 70B</p>
+    <p>Career Survival Intelligence Engine &mdash; Powered by Llama 3.3 70B</p>
     <p class="footer-sub">Built for brutal honesty, not comfort. Your career depends on truth.</p>
   </footer>
 </div>

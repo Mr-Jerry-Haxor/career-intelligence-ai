@@ -1,23 +1,23 @@
 // === VARIABLES ===
-$bg-dark: #0a0a0f;
-$bg-card: #12121a;
-$bg-card-hover: #1a1a2e;
-$accent: #00d4ff;
-$accent-secondary: #7c3aed;
-$danger: #ff4757;
-$warning: #ffa502;
-$success: #2ed573;
-$text-primary: #e8e8f0;
-$text-secondary: #9090a8;
-$text-muted: #606078;
-$border-color: #1e1e30;
+$bg-light: #f5f7fa;
+$bg-card: #ffffff;
+$bg-card-hover: #f9fafb;
+$accent: #4299e1;
+$accent-secondary: #9f7aea;
+$danger: #f56565;
+$warning: #ed8936;
+$success: #48bb78;
+$text-primary: #1a2332;
+$text-secondary: #4a5568;
+$text-muted: #718096;
+$border-color: #e2e8f0;
 $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
 
 // === HOST ===
 :host {
   display: block;
   min-height: 100vh;
-  background: $bg-dark;
+  background: $bg-light;
   color: $text-primary;
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
@@ -42,6 +42,7 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
 
     .logo-icon {
       font-size: 2rem;
+      line-height: 1;
     }
 
     h1 {
@@ -68,8 +69,8 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  background: rgba($accent, 0.05);
-  border: 1px solid rgba($accent, 0.15);
+  background: rgba($accent, 0.06);
+  border: 1px solid rgba($accent, 0.2);
   border-radius: 10px;
   padding: 14px 18px;
   margin: 16px 0 30px;
@@ -80,6 +81,7 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
   .privacy-icon {
     font-size: 1.1rem;
     flex-shrink: 0;
+    line-height: 1;
   }
 }
 
@@ -100,18 +102,21 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
   cursor: pointer;
   transition: all 0.3s ease;
   background: $bg-card;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 
   &:hover, &.dragging {
     border-color: $accent;
-    background: rgba($accent, 0.03);
+    background: rgba($accent, 0.02);
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba($accent, 0.1);
+    box-shadow: 0 8px 24px rgba($accent, 0.12);
   }
 
   .drop-zone-content {
     .upload-icon {
       font-size: 3.5rem;
       margin-bottom: 16px;
+      display: inline-block;
+      line-height: 1;
     }
 
     h2 {
@@ -145,28 +150,30 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
   border-radius: 10px;
   padding: 14px 20px;
   width: 100%;
-  color: lighten($danger, 15%);
+  color: darken($danger, 15%);
   font-size: 0.9rem;
 
   .error-icon {
     font-size: 1.3rem;
     flex-shrink: 0;
+    line-height: 1;
   }
 
   .retry-btn {
     margin-left: auto;
-    background: rgba($danger, 0.15);
+    background: rgba($danger, 0.12);
     border: 1px solid rgba($danger, 0.3);
-    color: lighten($danger, 15%);
+    color: darken($danger, 15%);
     padding: 6px 16px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.85rem;
     white-space: nowrap;
     transition: all 0.2s;
+    font-weight: 500;
 
     &:hover {
-      background: rgba($danger, 0.25);
+      background: rgba($danger, 0.2);
     }
   }
 }
@@ -185,6 +192,7 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
   border-radius: 16px;
   padding: 50px 40px;
   width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 
   h2 {
     font-size: 1.2rem;
@@ -198,6 +206,7 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
     font-size: 0.9rem;
     min-height: 24px;
     transition: opacity 0.3s ease;
+    font-weight: 500;
   }
 }
 
@@ -283,6 +292,7 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
   padding: 32px;
   line-height: 1.7;
   font-size: 0.92rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 
   ::ng-deep {
     .analysis-content {
@@ -305,7 +315,7 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
       }
 
       strong {
-        color: #fff;
+        color: $text-primary;
         font-weight: 600;
       }
 
@@ -325,7 +335,7 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
           color: $text-primary;
 
           &::before {
-            content: '>';
+            content: '▸';
             position: absolute;
             left: 0;
             color: $accent;
@@ -347,13 +357,13 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
         }
 
         tr:first-child td {
-          background: rgba($accent, 0.06);
+          background: rgba($accent, 0.08);
           font-weight: 600;
           color: $accent;
         }
 
         tr:hover td {
-          background: rgba($accent, 0.03);
+          background: rgba($accent, 0.04);
         }
       }
     }
@@ -373,7 +383,7 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
 
   .footer-sub {
     font-size: 0.75rem;
-    color: darken($text-muted, 10%);
+    color: lighten($text-muted, 10%);
   }
 }
 
