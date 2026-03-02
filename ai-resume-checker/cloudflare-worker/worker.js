@@ -170,7 +170,7 @@ export default {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'llama-3.1-70b-versatile',
+          model: 'llama-3.1-405b-reasoning',
           messages: [
             { role: 'system', content: SYSTEM_PROMPT },
             { role: 'user', content: `Analyze the following resume:\n\n${resumeText}` },
