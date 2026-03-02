@@ -188,14 +188,42 @@ export class AppComponent {
     // Italic text
     html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
 
-    // Table detection (simple pipes)
-    html = html.replace(/^(\|.+\|)$/gm, (match) => {
-      const cells = match.split('|').filter(c => c.trim() !== '');
-      const isHeader = cells.some(c => /^[\s-]+$/.test(c));
-      if (isHeader) return '';
-      return '<tr>' + cells.map(c => `<td>${c.trim()}</td>`).join('') + '</tr>';
+    // Table detection - properly parse markdown tables with headers
+    html = html.replace(/(\|.+\|)(\n\s*\|[\s\-|:]+\|)((?:\n\|.+\|)*)/gm, (match) => {
+      const lines = match.trim().split('\n').map(l => l.trim()).filter(l => l && l.startsWith('|'));
+      if (lines.length < 2) return match; // Not a valid table
+      
+      // First row is header
+      const headerCells = lines[0].split('|').filter(c => c.trim() !== '');
+      if (headerCells.length === 0) return match;
+      
+      // Skip separator row (line[1]) - contains dashes and pipes
+      const bodyRows = lines.slice(2);
+      
+      let table = '<table class="analysis-table"><thead><tr>';
+      headerCells.forEach(cell => {
+        table += `<th>${cell.trim()}</th>`;
+      });
+      table += '</tr></thead>';
+      
+      if (bodyRows.length > 0) {
+        table += '<tbody>';
+        bodyRows.forEach(row => {
+          const cells = row.split('|').filter(c => c.trim() !== '');
+          if (cells.length > 0) {
+            table += '<tr>';
+            cells.forEach(cell => {
+              table += `<td>${cell.trim()}</td>`;
+            });
+            table += '</tr>';
+          }
+        });
+        table += '</tbody>';
+      }
+      
+      table += '</table>';
+      return table;
     });
-    html = html.replace(/(<tr>.*<\/tr>\n?)+/g, '<table class="analysis-table">$&</table>');
 
     // Bullet points
     html = html.replace(/^[-\u2022]\s+(.*)$/gm, '<li>$1</li>');

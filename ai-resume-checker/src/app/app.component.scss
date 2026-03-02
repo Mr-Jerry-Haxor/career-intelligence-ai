@@ -349,21 +349,69 @@ $gradient-primary: linear-gradient(135deg, $accent, $accent-secondary);
         border-collapse: collapse;
         margin: 12px 0 20px;
         font-size: 0.85rem;
+        display: block;
+        overflow-x: auto;
+        border: 1px solid $border-color;
+        border-radius: 6px;
 
-        td {
-          padding: 10px 14px;
+        thead {
+          display: table;
+          width: 100%;
+          table-layout: fixed;
+        }
+
+        tbody {
+          display: table;
+          width: 100%;
+          table-layout: fixed;
+        }
+
+        th, td {
+          padding: 12px 14px;
           border: 1px solid $border-color;
           color: $text-primary;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
         }
 
-        tr:first-child td {
-          background: rgba($accent, 0.08);
-          font-weight: 600;
+        th {
+          background: rgba($accent, 0.1);
+          font-weight: 700;
           color: $accent;
+          text-align: left;
         }
 
-        tr:hover td {
+        td {
+          background: $bg-card;
+        }
+
+        tbody tr:hover td {
           background: rgba($accent, 0.04);
+        }
+
+        tbody tr:nth-child(even) td {
+          background: rgba($accent, 0.02);
+        }
+      }
+
+      // Mobile responsive table
+      @media (max-width: 768px) {
+        .analysis-table {
+          font-size: 0.75rem;
+
+          th, td {
+            padding: 8px 10px;
+          }
+        }
+      }
+
+      @media (max-width: 480px) {
+        .analysis-table {
+          font-size: 0.7rem;
+
+          th, td {
+            padding: 6px 8px;
+          }
         }
       }
     }
