@@ -1,0 +1,81 @@
+<div class="app-container">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">&#9889;</span>
+        <h1>AI Resume Checker</h1>
+      </div>
+      <p class="tagline">Career Survival Intelligence Engine &mdash; Find out if AI is coming for your job</p>
+    </div>
+  </header>
+
+  <!-- PRIVACY BANNER -->
+  <div class="privacy-banner">
+    <span class="privacy-icon">&#128274;</span>
+    <span>Your resume is analyzed in memory only. It is never stored, indexed, or shared. The file is automatically deleted immediately after processing. We do not train AI models on your data.</span>
+  </div>
+
+  <!-- UPLOAD SECTION -->
+  <section class="upload-section" *ngIf="state === 'idle' || state === 'error'">
+    <div
+      class="drop-zone"
+      [class.dragging]="isDragging"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+      (click)="triggerFileInput()"
+    >
+      <div class="drop-zone-content">
+        <div class="upload-icon">&#128196;</div>
+        <h2>Drop your resume here</h2>
+        <p>or click to browse</p>
+        <p class="file-types">Supports PDF, DOCX, TXT (max 10MB)</p>
+      </div>
+      <input
+        #fileInput
+        type="file"
+        [accept]="acceptedTypes"
+        (change)="onFileSelected($event)"
+        hidden
+      />
+    </div>
+
+    <div class="error-message" *ngIf="state === 'error'">
+      <span class="error-icon">&#9888;</span>
+      <span>{{ errorMessage }}</span>
+      <button class="retry-btn" (click)="resetAnalysis()">Try Again</button>
+    </div>
+  </section>
+
+  <!-- LOADING SECTION -->
+  <section class="loading-section" *ngIf="state === 'parsing' || state === 'analyzing'">
+    <div class="loading-card">
+      <div class="spinner"></div>
+      <h2 *ngIf="state === 'parsing'">Extracting text from {{ fileName }}...</h2>
+      <h2 *ngIf="state === 'analyzing'">Analyzing your career trajectory...</h2>
+      <p class="loading-message">{{ loadingMessage }}</p>
+      <div class="progress-bar">
+        <div class="progress-bar-fill"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS SECTION -->
+  <section class="results-section" *ngIf="state === 'done'">
+    <div class="results-header">
+      <h2>Analysis Complete: {{ fileName }}</h2>
+      <button class="new-analysis-btn" (click)="resetAnalysis()">
+        &#8634; New Analysis
+      </button>
+    </div>
+    <div class="results-content" [innerHTML]="formattedResult"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Career Survival Intelligence Engine &mdash; Powered by Llama 3.1 70B</p>
+    <p class="footer-sub">Built for brutal honesty, not comfort. Your career depends on truth.</p>
+  </footer>
+</div>
+
