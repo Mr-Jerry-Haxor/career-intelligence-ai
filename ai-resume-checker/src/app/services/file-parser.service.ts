@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
 import mammoth from 'mammoth';
+import { environment } from '../../environments/environment';
 
-// Set the worker source for pdf.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+// Set the worker source for pdf.js - use bundled version from public folder
+pdfjsLib.GlobalWorkerOptions.workerSrc = environment.pdfWorkerPath;
 
 @Injectable({
   providedIn: 'root'
